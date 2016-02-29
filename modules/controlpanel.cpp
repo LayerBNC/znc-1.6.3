@@ -1060,7 +1060,7 @@ class CAdminMod : public CModule {
 		CString sServer = sLine.Token(3, true);
 
 		if (!GetUser()->IsAdmin()) {
-			PutModule("Users are not permitted to add a server through this module. Please join one of our channels and ask for assistance in changing the servers for your bouncer.");
+			PutModule("Users are not permitted to add a server through this module. Please join one of our channels and ask for assistance in changing the servers for your bouncer. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
 			return;
 		}
 
