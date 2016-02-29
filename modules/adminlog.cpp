@@ -70,6 +70,14 @@ public:
 			Log("[" + GetUser()->GetUserName() + "/" + GetNetwork()->GetName() + "] disconnected from IRC: " +
 			    GetNetwork()->GetCurrentServer()->GetName() + " [" + sError + "]", LOG_NOTICE);
 		}
+		//Experimental GLine Handling for Quakenet
+		if (sLine.Token(1) == "465") {
+			CString sBanReason(sLine.substr(3));
+			if (sBanReason.Left(1) == ":")
+				sBanReason.LeftChomp();
+			Log("[" + GetUser()->GetUserName() + "/" + GetNetwork()->GetName() + "] Banned from IRC: " +
+			    GetNetwork()->GetCurrentServer()->GetName() + " [" + sBanReason + "]", LOG_NOTICE);
+		}
 		return CONTINUE;
         }
 
