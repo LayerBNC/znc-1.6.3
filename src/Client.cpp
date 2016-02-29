@@ -177,12 +177,12 @@ void CClient::ReadLine(const CString& sData) {
 
 		if (sTarget.Equals("status")) {
 			if (sModCommand.empty())
-				PutStatus("Hello. How may I help you?");
+				PutStatus("Hello. Please, type 'help' to see all available commands. Do not be shy to contact our staff team if you have any question or issue. You can reach us at our website: https://layerbnc.org/");
 			else
 				UserCommand(sModCommand);
 		} else {
 			if (sModCommand.empty())
-				CALLMOD(sTarget, this, m_pUser, m_pNetwork, PutModule("Hello. How may I help you?"))
+				CALLMOD(sTarget, this, m_pUser, m_pNetwork, PutModule("Hello. Please, type 'help' to see all available commands. Do not be shy to contact our staff team if you have any question or issue. You can reach us at our website: https://layerbnc.org/"))
 			else
 				CALLMOD(sTarget, this, m_pUser, m_pNetwork, OnModCommand(sModCommand))
 		}
@@ -200,12 +200,12 @@ void CClient::ReadLine(const CString& sData) {
 
                 if (sTarget.Equals("status")) {
                         if (sModCommand.empty())
-                                PutStatus("Hello. How may I help you?");
+                                PutStatus("Hello. Please, type 'help' to see all available commands. Do not be shy to contact our staff team if you have any question or issue. You can reach us at our website: https://layerbnc.org/");
                         else
                                 UserCommand(sModCommand);
                 } else {
                         if (sModCommand.empty())
-                                CALLMOD(sTarget, this, m_pUser, m_pNetwork, PutModule("Hello. How may I help you?"))
+                                CALLMOD(sTarget, this, m_pUser, m_pNetwork, PutModule("Hello. Please, type 'help' to see all available commands. Do not be shy to contact our staff team if you have any question or issue. You can reach us at our website: https://layerbnc.org/"))
                         else
                                 CALLMOD(sTarget, this, m_pUser, m_pNetwork, OnModCommand(sModCommand))
                 }
