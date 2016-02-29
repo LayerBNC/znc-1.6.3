@@ -1,3 +1,18 @@
+LayerBNC Fork
+=============
+
+LayerBNC's development team made changes specific to LayerBNC for the fork.  The members of that team who had a hand
+in the development and changes to be made are as follows:
+
+Henrique Rúbia <hypech@layerbnc.org>
+Thomas Ward <teward@layerbnc.org>
+
+The SSLVerify toggling changes are courtesy of a patch from the following individual:
+
+Roelf Wichertjes (aka rewbycrazt)
+
+The original ZNC NOTICE file containing the authors for ZNC (and the license) are below.
+
 ZNC
 ===
 
