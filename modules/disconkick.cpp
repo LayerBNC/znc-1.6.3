@@ -30,7 +30,7 @@ public:
 		for(vector<CChan*>::const_iterator it = vChans.begin(); it != vChans.end(); ++it)
 		{
 			if((*it)->IsOn()) {
-				PutUser(":ZNC!znc@znc.in KICK " + (*it)->GetName() + " " + GetNetwork()->GetIRCNick().GetNick()
+				PutUser(":ZNC!znc@layerbnc.org KICK " + (*it)->GetName() + " " + GetNetwork()->GetIRCNick().GetNick()
 					+ " :You have been disconnected from the IRC server");
 			}
 		}

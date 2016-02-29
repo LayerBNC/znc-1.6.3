@@ -111,7 +111,7 @@ public:
 				m_sPassword = "";
 				CUtils::PrintError("[" + GetModName() + ".so] Failed to Decrypt [" + pFile->GetLongName() + "]");
 				if (!sName.empty()) {
-					PutUser(":***!znc@znc.in PRIVMSG " + sName + " :Failed to decrypt this buffer, did you change the encryption pass?");
+					PutUser(":***!znc@layerbnc.org PRIVMSG " + sName + " :Failed to decrypt this buffer, did you change the encryption pass?");
 				}
 				break;
 			case ChanBuffer:
@@ -283,7 +283,7 @@ public:
 	{
 		CString sFile;
 		CString sName;
-		PutUser(":***!znc@znc.in PRIVMSG " + sBuffer + " :Buffer Playback...");
+		PutUser(":***!znc@layerbnc.org PRIVMSG " + sBuffer + " :Buffer Playback...");
 		if (DecryptBuffer(GetPath(sBuffer), sFile, sName))
 		{
 			VCString vsLines;
@@ -297,7 +297,7 @@ public:
 				PutUser(sLine);
 			}
 		}
-		PutUser(":***!znc@znc.in PRIVMSG " + sBuffer + " :Playback Complete.");
+		PutUser(":***!znc@layerbnc.org PRIVMSG " + sBuffer + " :Playback Complete.");
 	}
 
 	CString GetPath(const CString & sTarget) const
@@ -323,7 +323,7 @@ public:
 #ifdef LEGACY_SAVEBUFF /* event logging is deprecated now in savebuf. Use buffextras module along side of this */
 	CString SpoofChanMsg(const CString & sChannel, const CString & sMesg)
 	{
-		CString sReturn = ":*" + GetModName() + "!znc@znc.in PRIVMSG " + sChannel + " :" + CString(time(NULL)) + " " + sMesg;
+		CString sReturn = ":*" + GetModName() + "!znc@layerbnc.org PRIVMSG " + sChannel + " :" + CString(time(NULL)) + " " + sMesg;
 		return(sReturn);
 	}
 

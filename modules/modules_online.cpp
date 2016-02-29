@@ -58,7 +58,7 @@ public:
 			if (!GetNetwork()->GetIRCSock()) {
 				// if we are not connected to any IRC server, send
 				// an empty or module-nick filled response.
-				PutUser(":irc.znc.in 303 " + GetClient()->GetNick() + " :" + sBNCNicks);
+				PutUser(":layerbnc.org 303 " + GetClient()->GetNick() + " :" + sBNCNicks);
 			} else {
 				// We let the server handle this request and then act on
 				// the 303 response from the IRC server.
@@ -72,9 +72,9 @@ public:
 
 			if (IsOnlineModNick(sNick)) {
 				CIRCNetwork* pNetwork = GetNetwork();
-				PutUser(":znc.in 311 " + pNetwork->GetCurNick() + " " + sNick + " znc znc.in * :" + sNick);
-				PutUser(":znc.in 312 " + pNetwork->GetCurNick() + " " + sNick + " *.znc.in :Bouncer");
-				PutUser(":znc.in 318 " + pNetwork->GetCurNick() + " " + sNick + " :End of /WHOIS list.");
+				PutUser(":layerbnc.org 311 " + pNetwork->GetCurNick() + " " + sNick + " znc layerbnc.org * :" + sNick);
+				PutUser(":layerbnc.org 312 " + pNetwork->GetCurNick() + " " + sNick + " *.layerbnc.org :Bouncer");
+				PutUser(":layerbnc.org 318 " + pNetwork->GetCurNick() + " " + sNick + " :End of /WHOIS list.");
 
 				return HALT;
 			}

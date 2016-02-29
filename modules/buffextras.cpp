@@ -30,7 +30,7 @@ public:
 		if (Channel.AutoClearChanBuffer() && GetNetwork()->IsUserOnline())
 			return;
 
-		Channel.AddBuffer(":" + GetModNick() + "!" + GetModName() + "@znc.in PRIVMSG " + _NAMEDFMT(Channel.GetName()) + " :{text}", sMessage);
+		Channel.AddBuffer(":" + GetModNick() + "!" + GetModName() + "@layerbnc.org PRIVMSG " + _NAMEDFMT(Channel.GetName()) + " :{text}", sMessage);
 	}
 
 	virtual void OnRawMode2(const CNick* pOpNick, CChan& Channel, const CString& sModes, const CString& sArgs) override {

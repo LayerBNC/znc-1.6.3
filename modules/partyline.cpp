@@ -91,7 +91,7 @@ public:
 
 				for (vector<CClient*>::const_iterator it3 = vClients.begin(); it3 != vClients.end(); ++it3) {
 					CClient* pClient = *it3;
-					pClient->PutClient( ":*" + GetModName() + "!znc@znc.in KICK " + (*it)->GetName() + " " + pClient->GetNick() + " :" + GetModName() + " unloaded");
+					pClient->PutClient( ":*" + GetModName() + "!znc@layerbnc.org KICK " + (*it)->GetName() + " " + pClient->GetNick() + " :" + GetModName() + " unloaded");
 				}
 			}
 		}
@@ -159,7 +159,7 @@ public:
 			if (sAction == "topic") {
 				pChannel = FindChannel(sKey);
 				if (pChannel && !(it->second).empty()) {
-					PutChan(pChannel->GetNicks(), ":irc.znc.in TOPIC " + pChannel->GetName() + " :" + it->second);
+					PutChan(pChannel->GetNicks(), ":layerbnc.org TOPIC " + pChannel->GetName() + " :" + it->second);
 					pChannel->SetTopic(it->second);
 				}
 			}
@@ -229,7 +229,7 @@ public:
 			const set<CString>& ssNicks = pChannel->GetNicks();
 
 			if (sHost.empty()) {
-				sHost = "znc.in";
+				sHost = "layerbnc.org";
 			}
 			PutChan(ssNicks, ":" + NICK_PREFIX + sNick + "!" + pUser->GetIdent() + "@" + sHost + " JOIN " + *a, false);
 			pChannel->AddNick(sNick);
@@ -249,7 +249,7 @@ public:
 				}
 
 				SendNickList(pUser, pNetwork, ssNicks, (*it)->GetName());
-				PutChan(ssNicks, ":*" + GetModName() + "!znc@znc.in MODE " + (*it)->GetName() + " +" + CString(pUser->IsAdmin() ? "o" : "v") + " " + NICK_PREFIX + pUser->GetUserName(), false);
+				PutChan(ssNicks, ":*" + GetModName() + "!znc@layerbnc.org MODE " + (*it)->GetName() + " +" + CString(pUser->IsAdmin() ? "o" : "v") + " " + NICK_PREFIX + pUser->GetUserName(), false);
 			}
 		}
 	}
@@ -261,7 +261,7 @@ public:
 				const set<CString>& ssNicks = (*it)->GetNicks();
 
 				if (ssNicks.find(pUser->GetUserName()) != ssNicks.end()) {
-					PutChan(ssNicks, ":*" + GetModName() + "!znc@znc.in MODE " + (*it)->GetName() + " -ov " + NICK_PREFIX + pUser->GetUserName() + " " + NICK_PREFIX + pUser->GetUserName(), false);
+					PutChan(ssNicks, ":*" + GetModName() + "!znc@layerbnc.org MODE " + (*it)->GetName() + " -ov " + NICK_PREFIX + pUser->GetUserName() + " " + NICK_PREFIX + pUser->GetUserName(), false);
 				}
 			}
 		}
@@ -290,19 +290,19 @@ public:
 						pChannel->SetTopic(sTopic);
 						SaveTopic(pChannel);
 					} else {
-						pUser->PutUser(":irc.znc.in 482 " +  pClient->GetNick() + " " + sChannel + " :You're not channel operator");
+						pUser->PutUser(":layerbnc.org 482 " +  pClient->GetNick() + " " + sChannel + " :You're not channel operator");
 					}
 				} else {
 					sTopic = pChannel->GetTopic();
 
 					if (sTopic.empty()) {
-						pUser->PutUser(":irc.znc.in 331 " + pClient->GetNick() + " " + sChannel + " :No topic is set.");
+						pUser->PutUser(":layerbnc.org 331 " + pClient->GetNick() + " " + sChannel + " :No topic is set.");
 					} else {
-						pUser->PutUser(":irc.znc.in 332 " + pClient->GetNick() + " " + sChannel + " :" + sTopic);
+						pUser->PutUser(":layerbnc.org 332 " + pClient->GetNick() + " " + sChannel + " :" + sTopic);
 					}
 				}
 			} else {
-				pUser->PutUser(":irc.znc.in 442 " + pClient->GetNick() + " " + sChannel + " :You're not on that channel");
+				pUser->PutUser(":layerbnc.org 442 " + pClient->GetNick() + " " + sChannel + " :You're not on that channel");
 			}
 			return HALT;
 		}
@@ -351,7 +351,7 @@ public:
 		CString sHost = pUser->GetBindHost();
 
 		if (sHost.empty()) {
-			sHost = "znc.in";
+			sHost = "layerbnc.org";
 		}
 
 		if (bNickAsTarget) {
@@ -414,7 +414,7 @@ public:
 			CString sHost = pUser->GetBindHost();
 
 			if (sHost.empty()) {
-				sHost = "znc.in";
+				sHost = "layerbnc.org";
 			}
 
 			for (vector<CClient*>::const_iterator it = vClients.begin(); it != vClients.end(); ++it) {
@@ -436,10 +436,10 @@ public:
 			/* Tell the other clients we have op or voice, the current user's clients already know from NAMES list */
 
 			if (pUser->IsAdmin()) {
-				PutChan(ssNicks, ":*" + GetModName() + "!znc@znc.in MODE " + pChannel->GetName() + " +o " + NICK_PREFIX + pUser->GetUserName(), false, false, pUser);
+				PutChan(ssNicks, ":*" + GetModName() + "!znc@layerbnc.org MODE " + pChannel->GetName() + " +o " + NICK_PREFIX + pUser->GetUserName(), false, false, pUser);
 			}
 
-			PutChan(ssNicks, ":*" + GetModName() + "!znc@znc.in MODE " + pChannel->GetName() + " +v " + NICK_PREFIX + pUser->GetUserName(), false, false, pUser);
+			PutChan(ssNicks, ":*" + GetModName() + "!znc@layerbnc.org MODE " + pChannel->GetName() + " +v " + NICK_PREFIX + pUser->GetUserName(), false, false, pUser);
 		}
 	}
 
@@ -460,7 +460,7 @@ public:
 		CString sHost = pUser->GetBindHost();
 
 		if (sHost.empty()) {
-			sHost = "znc.in";
+			sHost = "layerbnc.org";
 		}
 
 		if (cPrefix == CHAN_PREFIX_1C) {
@@ -517,13 +517,13 @@ public:
 
 	const CString GetIRCServer(CIRCNetwork *pNetwork) {
 		if (!pNetwork) {
-			return "irc.znc.in";
+			return "layerbnc.org";
 		}
 
 		const CString& sServer = pNetwork->GetIRCServer();
 		if (!sServer.empty())
 			return sServer;
-		return "irc.znc.in";
+		return "layerbnc.org";
 	}
 
 	bool PutChan(const CString& sChan, const CString& sLine, bool bIncludeCurUser = true, bool bIncludeClient = true, CUser* pUser = NULL, CClient* pClient = NULL) {

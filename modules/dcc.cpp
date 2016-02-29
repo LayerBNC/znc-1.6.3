@@ -111,7 +111,7 @@ public:
 		unsigned short uPort = CZNC::Get().GetManager().ListenRand("DCC::LISTEN::" + sRemoteNick, sLocalDCCIP, false, SOMAXCONN, pSock, 120);
 
 		if (GetUser()->GetNick().Equals(sRemoteNick)) {
-			PutUser(":*dcc!znc@znc.in PRIVMSG " + sRemoteNick + " :\001DCC SEND " + pFile->GetShortName() + " " + CString(CUtils::GetLongIP(sLocalDCCIP)) + " "
+			PutUser(":*dcc!znc@layerbnc.org PRIVMSG " + sRemoteNick + " :\001DCC SEND " + pFile->GetShortName() + " " + CString(CUtils::GetLongIP(sLocalDCCIP)) + " "
 				+ CString(uPort) + " " + CString(pFile->GetSize()) + "\001");
 		} else {
 			PutIRC("PRIVMSG " + sRemoteNick + " :\001DCC SEND " + pFile->GetShortName() + " " + CString(CUtils::GetLongIP(sLocalDCCIP)) + " "
@@ -232,7 +232,7 @@ public:
 				if (pSock->GetLocalPort() == uResumePort) {
 					if (pSock->Seek(uResumeSize)) {
 						PutModule("DCC -> [" + pSock->GetRemoteNick() + "][" + pSock->GetFileName() + "] - Attempting to resume from file position [" + CString(uResumeSize) + "]");
-						PutUser(":*dcc!znc@znc.in PRIVMSG " + GetUser()->GetNick() + " :\001DCC ACCEPT " + sFile + " " + CString(uResumePort) + " " + CString(uResumeSize) + "\001");
+						PutUser(":*dcc!znc@layerbnc.org PRIVMSG " + GetUser()->GetNick() + " :\001DCC ACCEPT " + sFile + " " + CString(uResumePort) + " " + CString(uResumeSize) + "\001");
 					} else {
 						PutModule("DCC -> [" + GetUser()->GetNick() + "][" + sFile + "] Unable to find send to initiate resume.");
 					}
