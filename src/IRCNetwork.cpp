@@ -591,7 +591,7 @@ void CIRCNetwork::ClientConnected(CClient *pClient) {
 	pClient->SetPlaybackActive(true);
 
 	if (m_RawBuffer.IsEmpty()) {
-		pClient->PutClient(":layerbnc.org 001 " + pClient->GetNick() + " :- Welcome to ZNC -");
+		pClient->PutClient(":layerbnc.org 001 " + pClient->GetNick() + " :- Welcome to LayerBNC - At Your Fingertips! -");
 	} else {
 		const CString& sClientNick = pClient->GetNick(false);
 		MCString msParams;
