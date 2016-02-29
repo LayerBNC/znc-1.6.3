@@ -604,7 +604,7 @@ void CUser::UserConnected(CClient* pClient) {
 		BounceAllClients();
 	}
 
-	pClient->PutClient(":layerbnc.org 001 " + pClient->GetNick() + " :- Welcome to ZNC -");
+	pClient->PutClient(":layerbnc.org 001 " + pClient->GetNick() + " :- Welcome to LayerBNC - At Your Fingertips! -");
 
 	m_vClients.push_back(pClient);
 }
