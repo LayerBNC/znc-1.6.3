@@ -70,9 +70,11 @@ public:
 			Log("[" + GetUser()->GetUserName() + "/" + GetNetwork()->GetName() + "] disconnected from IRC: " +
 			    GetNetwork()->GetCurrentServer()->GetName() + " [" + sError + "]", LOG_NOTICE);
 		}
-		//Experimental GLine Handling for Quakenet
+		//Handle klines and such, using 465 ban msg raw (see RFC)
 		if (sLine.Token(1) == "465") {
-			CString sBanReason(sLine.substr(3));
+			CString sBanReason(sLine.substr(1));
+			// Left Chomp based on the location of the : for reason
+			sBanReason.LeftChomp(sBanReason.find(":"));
 			if (sBanReason.Left(1) == ":")
 				sBanReason.LeftChomp();
 			Log("[" + GetUser()->GetUserName() + "/" + GetNetwork()->GetName() + "] Banned from IRC: " +
