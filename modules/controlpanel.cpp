@@ -259,6 +259,10 @@ class CAdminMod : public CModule {
 			PutModule("AltNick = " + sValue);
 		}
 		else if (sVar == "ident") {
+			if (!pUser->IsAdmin()) {
+				PutModule("Users are not allowed to change their ident. Please join one of our channels and ask for assistance in changing your ident. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+				return;
+			}
 			pUser->SetIdent(sValue);
 			PutModule("Ident = " + sValue);
 		}
