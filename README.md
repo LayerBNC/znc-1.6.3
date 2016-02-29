@@ -151,3 +151,10 @@ questions.
 
 You can get the latest development version with git:
 `git clone https://github.com/znc/znc.git --recursive`
+
+
+## LayerBNC Notice
+
+This ZNC software was coded by the ZNC team, edited by LayerBNC developers. This is specially made for LayerBNC, and should be used for a BNC provider. This may not be the final product LayerBNC uses, but close to it. 
+
+We do not claim ownership of all the code, just our edits. Feel free to use at your own will.
