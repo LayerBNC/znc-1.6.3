@@ -156,7 +156,6 @@ void CIRCSock::ReadLine(const CString& sData) {
 		return;
 	} else if (sLine.Token(1) == "465") {
 		CString sBanReason(sLine.substr(1));
-		sBanReason.TrimPrefix();
 		m_pNetwork->PutStatus("Banned from Server: [" + sBanReason + "]");
 	}
 
