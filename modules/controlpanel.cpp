@@ -1092,6 +1092,11 @@ class CAdminMod : public CModule {
 		unsigned short uPort = sLine.Token(4).ToUShort();
 		CString sPass = sLine.Token(5);
 
+		if (!GetUser()->IsAdmin()) {
+			PutModule("Users are not permitted to remove a server through this module. Please join one of our channels and ask for assistance in changing the servers for your bouncer. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+			return;
+		}
+
 		if (sServer.empty()) {
 			PutModule("Usage: DelServer <username> <network> <server>");
 			return;
