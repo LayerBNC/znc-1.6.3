@@ -721,7 +721,7 @@ void CClient::AcceptLogin(CUser& User) {
 			PutStatusNotice("If you want to choose another network, use /znc JumpNetwork <network>, or connect to ZNC with username " + m_pUser->GetUserName() + "/<network> (instead of just " + m_pUser->GetUserName() + ")");
 		}
 	} else {
-		PutStatusNotice("You have no networks configured. Use /znc AddNetwork <network> to add one.");
+		PutStatusNotice("You have no networks configured. Please use !addnet on one of our channels to request a new network. Note that you are free to have up to 3 networks in your account by default. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
 	}
 
 	SetNetwork(m_pNetwork, false);

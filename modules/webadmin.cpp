@@ -439,6 +439,11 @@ public:
 		} else if (sPageName == "addnetwork") {
 			CUser* pUser = SafeGetUserFromParam(WebSock);
 
+			if (!spSession->IsAdmin()) {
+				WebSock.PrintErrorPage("Users are not permitted to add networks on their own. Please join one of our channels and use !addnet to request a network to be added. Note that you are free to have up to 3 networks in your account by default. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+				return true;
+			}
+
 			// Admin||Self Check
 			if (!spSession->IsAdmin() && (!spSession->GetUser() || spSession->GetUser() != pUser)) {
 				return false;
@@ -1039,10 +1044,12 @@ public:
 
 		VCString vsArgs;
 
-		pNetwork->DelServers();
-		WebSock.GetRawParam("servers").Split("\n", vsArgs);
-		for (unsigned int a = 0; a < vsArgs.size(); a++) {
-			pNetwork->AddServer(vsArgs[a].Trim_n());
+		if (spSession->IsAdmin()) {
+			pNetwork->DelServers();
+			WebSock.GetRawParam("servers").Split("\n", vsArgs);
+			for (unsigned int a = 0; a < vsArgs.size(); a++) {
+				pNetwork->AddServer(vsArgs[a].Trim_n());
+			}
 		}
 
 		WebSock.GetRawParam("fingerprints").Split("\n", vsArgs);
@@ -1130,9 +1137,16 @@ public:
 	}
 
 	bool DelNetwork(CWebSock& WebSock, CUser* pUser, CTemplate& Tmpl) {
+		std::shared_ptr<CWebSession> spSession = WebSock.GetSession();
 		CString sNetwork = WebSock.GetParam("name");
+
 		if (sNetwork.empty() && !WebSock.IsPost()) {
 			sNetwork = WebSock.GetParam("name", false);
+		}
+
+		if (!spSession ->IsAdmin()) {
+			WebSock.PrintErrorPage("Users are not permitted to delete networks. Please join one of our channels and ask for a network to be removed from your account. Note that you are free to have up to 3 networks in your account by default. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+			return true;
 		}
 
 		if (!pUser) {

@@ -509,6 +509,12 @@ void CClient::UserCommand(CString& sLine) {
 		PutStatus("Total: " + CString(vChans.size()) + " - Joined: " + CString(uNumJoined) +
 			" - Detached: " + CString(uNumDetached) + " - Disabled: " + CString(uNumDisabled));
 	} else if (sCommand.Equals("ADDNETWORK")) {
+
+		if (!m_pUser->IsAdmin()) {
+			PutStatus("Users are not permitted to add networks on their own. Please join one of our channels and use !addnet to request a network to be added. Note that you are free to have up to 3 networks in your account by default. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+			return;
+		}
+
 		if (!m_pUser->IsAdmin() && !m_pUser->HasSpaceForNewNetwork()) {
 			PutStatus("Network number limit reached. Ask an admin to increase the limit for you, or delete unneeded networks using /znc DelNetwork <name>");
 			return;
@@ -534,6 +540,11 @@ void CClient::UserCommand(CString& sLine) {
 		}
 	} else if (sCommand.Equals("DELNETWORK")) {
 		CString sNetwork = sLine.Token(1);
+
+		if (!m_pUser->IsAdmin()) {
+			PutStatus("Users are not permitted to delete networks. Please join one of our channels and ask for a network to be removed from your account. Note that you are free to have up to 3 networks in your account by default. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+			return;
+		}
 
 		if (sNetwork.empty()) {
 			PutStatus("Usage: DelNetwork <name>");
@@ -693,6 +704,10 @@ void CClient::UserCommand(CString& sLine) {
 	} else if (sCommand.Equals("ADDSERVER")) {
 		CString sServer = sLine.Token(1);
 
+		if (!m_pUser->IsAdmin()) {
+			PutStatus("Users are not permitted to add a server to the server list. Please join one of our channels and ask for assistance in changing the servers for your bouncer. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+			return;
+		}
 		if (!m_pNetwork) {
 			PutStatus("You must be connected with a network to use this command");
 			return;
@@ -710,6 +725,12 @@ void CClient::UserCommand(CString& sLine) {
 			PutStatus("Perhaps the server is already added or openssl is disabled?");
 		}
 	} else if (sCommand.Equals("REMSERVER") || sCommand.Equals("DELSERVER")) {
+
+		if (!m_pUser->IsAdmin()) {
+			PutStatus("Users are not permitted to remove a server from the server list. Please join one of our channels and ask for assistance in changing the servers for your bouncer. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+			return;
+		}
+
 		if (!m_pNetwork) {
 			PutStatus("You must be connected with a network to use this command");
 			return;

@@ -934,6 +934,11 @@ class CAdminMod : public CModule {
 		CString sNetwork = sLine.Token(2);
 		CUser *pUser = GetUser();
 
+		if (!GetUser()->IsAdmin()) {
+			PutModule("Users are not permitted to add networks on their own. Please join one of our channels and use !addnet to request a network to be added. Note that you are free to have up to 3 networks in your account by default. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+			return;
+		}
+
 		if (sNetwork.empty()) {
 			sNetwork = sUser;
 		} else {
@@ -971,6 +976,11 @@ class CAdminMod : public CModule {
 		CString sUser = sLine.Token(1);
 		CString sNetwork = sLine.Token(2);
 		CUser *pUser = GetUser();
+
+		if (!GetUser()->IsAdmin()) {
+			PutModule("Users are not permitted to delete networks through this module. Please join one of our channels and ask for a network to be removed from your account. Note that you are free to have up to 3 networks in your account by default. Additionally, we offer premium services to grant you more options and unlimited networks: https://layerbnc.org/premium");
+			return;
+		}
 
 		if (sNetwork.empty()) {
 			sNetwork = sUser;
@@ -1048,6 +1058,11 @@ class CAdminMod : public CModule {
 		CString sUsername = sLine.Token(1);
 		CString sNetwork = sLine.Token(2);
 		CString sServer = sLine.Token(3, true);
+
+		if (!GetUser()->IsAdmin()) {
+			PutModule("Users are not permitted to add a server through this module. Please join one of our channels and ask for assistance in changing the servers for your bouncer.");
+			return;
+		}
 
 		if (sServer.empty()) {
 			PutModule("Usage: AddServer <username> <network> <server>");
