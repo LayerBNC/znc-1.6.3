@@ -53,11 +53,12 @@ public:
 	}
 
 	virtual void OnIRCConnected() override {
-		Log("[" + GetUser()->GetUserName() + "/" + GetNetwork()->GetName() + "] connected to IRC: " + GetNetwork()->GetCurrentServer()->GetName());
+		Log("IRCConnect - " + GetUser()->GetUserName() + "/" + GetNetwork()->GetName() + " connected to IRC: " + GetNetwork()->GetCurrentServer()->GetName() +
+		    "(IRC Server: " + GetNetwork()->GetIRCServer() + ")");
 	}
 
 	virtual void OnIRCDisconnected() override {
-		Log("[" + GetUser()->GetUserName() + "/" + GetNetwork()->GetName() + "] disconnected from IRC");
+		Log("IRCDisconnect - " + GetUser()->GetUserName() + "/" + GetNetwork()->GetName() + " disconnected from IRC (IRC Server: " + GetNetwork()->GetIRCServer() + ")");
 	}
 
 	virtual EModRet OnRaw(CString& sLine) override {
@@ -84,15 +85,15 @@ public:
         }
 
 	virtual void OnClientLogin() override {
-		Log("[" + GetUser()->GetUserName() + "] connected to ZNC from " + GetClient()->GetRemoteIP());
+		Log("UserConnect - " + GetUser()->GetUserName() + " connected to ZNC from " + GetClient()->GetRemoteIP());
 	}
 
 	virtual void OnClientDisconnect() override {
-		Log("[" + GetUser()->GetUserName() + "] disconnected from ZNC from " + GetClient()->GetRemoteIP());
+		Log("UserDisconnect - " + GetUser()->GetUserName() + " disconnected from ZNC from " + GetClient()->GetRemoteIP());
 	}
 
 	virtual void OnFailedLogin(const CString& sUsername, const CString& sRemoteIP) override {
-		Log("[" + sUsername + "] failed to login from " + sRemoteIP, LOG_WARNING);
+		Log("UserLogonFailure - " + sUsername + " failed to login from " + sRemoteIP, LOG_WARNING);
 	}
 
 	void Log(CString sLine, int iPrio = LOG_INFO) {
