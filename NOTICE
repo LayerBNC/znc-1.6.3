@@ -36,18 +36,9 @@ The FISH module is developed by croz and porki.
 Colloquy Module
 ===============
 
-The Colloquy Module included with the LayerBNC fork of ZNC is different from the original Colloquy module.
-The original Colloquy module as it exists upstream does not build under ZNC 1.6.x. Therefore, it is not
-included with this fork of ZNC. The original Colloquy module's details are here: http://wiki.znc.in/Colloquy.
+Details on the Colloquy module details are here: http://wiki.znc.in/Colloquy.
 
-In its place, a 'dummy' Colloquy module has been added (to prevent upgrade configuration file conflicts). This
-'dummy' module is based of the 'dummy' awaynick module from ZNC Master (after ZNC 1.6.x), which changes the module
-to state that it is a retired module and no longer has a function. This dummy colloquy module in our fork here will
-instead state that you should ask in one of the LayerBNC channels if you have questions as to why it was removed.
-
-This 'dummy' module, while based off the efforts of the ZNC developers in the upstream ZNC master repository, was
-'created' from the dummy awaynick module and is copywritten 2015 by Thomas Ward; the dummy module is released under
-the Apache license, like ZNC master's components are.
+Thanks to J-P Nurmi (details below under ZNC section) for providing a code patch to get the thing to build.
 
 
 ZNC
