@@ -13,6 +13,20 @@ Roelf Wichertjes (aka rewbycraft)
 
 The original ZNC NOTICE file containing the authors for ZNC (and the license) are below.
 
+ZNC Push Module
+===============
+
+The version of the ZNC Push module included in this fork is from upstream 
+repository at commit 5ad308af54.
+
+The ZNC Push module is Copyright 2014 John Reese.
+The ZNC Push module is released under the MIT license.
+
+License: https://github.com/jreese/znc-push/blob/5ad308af5402464411bd69ba262634e0adcba9d0/LICENSE
+
+Upstream repository: https://github.com/jreese/znc-push
+
+
 ZNC
 ===
 
